@@ -225,6 +225,9 @@ https://templatemo.com/tm-556-catalog-z
             var page_num = urlParams.has('page_num') ? urlParams.get('page_num') : 1;
             var search_kw = urlParams.has('search_kw') ? urlParams.get('search_kw') : '';
 
+            const token = localStorage.getItem('jwt');
+            const username = localStorage.getItem('username');
+
             document.getElementById("search_form_id").addEventListener("submit", function (event) {
                 event.preventDefault();
                 var search_kw = document.getElementById("search_kw_id").value;
@@ -251,10 +254,10 @@ https://templatemo.com/tm-556-catalog-z
 
 
                     var login_or_user = document.getElementById("login_or_user");
-                    if (data.elements.hasOwnProperty('username')) {
+                    if (token) {
                         var hellouser = document.createElement("div");
                         hellouser.className = "nav-link nav-link-4";
-                        hellouser.textContent = "Hello, " + data.elements.username;
+                        hellouser.textContent = "Hello, " + username;
                         login_or_user.appendChild(hellouser);
                     }
                     else {
