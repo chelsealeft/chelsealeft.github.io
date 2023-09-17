@@ -252,6 +252,7 @@ a:hover {
 .tm-hero {
     min-height: 200px;
     background: transparent;
+    position: relative;
 }
 
 .tm-mt-60 {
@@ -779,6 +780,11 @@ select:not([multiple]) {
         padding-right: 15px;
         width: 100%;
         justify-content: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
     }
 
     .tm-search-input {
@@ -815,6 +821,16 @@ select:not([multiple]) {
 
 .tm-call-to-action-image {
     margin-right: 50px;
+}
+
+.mybanner_img {
+    background-image: url("https://cdn.substance3d.com/v2/files/public/source-home-search-banner.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.mybg_white {
+    background-color: #ffffff;
 }
 
 .overlay {
