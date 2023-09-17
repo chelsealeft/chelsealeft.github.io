@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> OpenSVBRDF </title>
+    <link rel="stylesheet" type="text/css" href="./static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./static/fontawesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/templatemo-style.css">
+    <!--
+    
+TemplateMo 556 Catalog-Z
+
+https://templatemo.com/tm-556-catalog-z
+-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+    <div class="overlay"></div>
+    <div id="myModal" class="mymodal">
+        <div>
+            <div class="mymodal-header">
+                <div class="modal-header-p">Modal Head
+                </div>
+
+                <hr class="modal-divider">
+            </div>
+
+            <div class="mymodal-content">
+                <img id="modalImage" src="" alt="Modal Image" class="img-fluid tm-call-to-action-image" />
+                <div class="mymodal-text-content" id="content1">
+                    <h2 class="mymodal-title">default</h2>
+                    <div class="tm-call-to-action-description" id="content2">
+                        <!--<p class="mymodal_dladdr">Download address: 
+                            <a href="./static/tags.zip"  download>&nbsp;texture</a>
+                            <a href="https://v5.getbootstrap.com/">&nbsp;texture</a>
+                            <a href="https://v5.getbootstrap.com/">&nbsp;texture</a>
+                        </p>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-film mr-2"></i>
+                OpenSVBRDF
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+
+                    <!--{% if admin %}
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-3" href="users">Users</a>
+                    </li>
+                    {% endif %}-->
+
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-1 active" aria-current="page" href="index.html">Photos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-2" href="upload">Challenges</a>
+                    </li>
+                    <!--
+                {% if elements.username %}
+                <li class="nav-item">
+                <div class="nav-link nav-link-4">Hello,{{elements.username}}</div>
+            </li>
+                {% else %}-->
+                    <li class="nav-item" id="login_or_user">
+                    </li>
+                    <!--{% endif %}-->
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="tm-hero d-flex justify-content-center align-items-center" data-parallax="scroll"
+        data-image-src="https://cdn.substance3d.com/v2/files/public/source-home-search-banner.jpg"
+        referrerpolicy="no-referrer">
+        <form id="search_form_id" class="d-flex tm-search-form">
+            <input class="form-control tm-search-input" type="search" pattern="[a-zA-Z]*" id="search_kw_id"
+                placeholder="" aria-label="Search" name="search_kw">
+            <button class="btn btn-outline-success tm-search-btn" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+    </div>
+
+    <div class="container-fluid tm-container-content tm-mt-60">
+        <div class="row mb-4">
+            <h2 class="col-6 tm-text-primary">
+                Latest Photos
+            </h2>
+            <div class="col-6 d-flex justify-content-end align-items-center">
+                <form id="pg_goto_id" class="tm-text-primary">
+                    Page <input name="page_num" type="text" pattern="[0-9]*" id="pg_input_id"
+                        class="tm-input-paging tm-text-primary">
+                    of <span id="maxpagesdisplay"></span>
+                    <button class="btn btn-primary tm-btn-next"> Go </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row tm-mb-90 tm-gallery" id="gallery_disp">
+
+
+        </div>
+
+
+        <div class="row tm-mb-90">
+            <div class="col-12 d-flex justify-content-between align-items-center tm-paging-col">
+
+                <div class="tm-paging d-flex" id="pgindex_disp">
+
+                </div>
+
+            </div>
+        </div>
+    </div> <!-- container-fluid, tm-container-content -->
+
+    <footer class="tm-bg-gray pt-5 pb-3 tm-text-gray tm-footer">
+        <div class="container-fluid tm-container-small">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-12 px-5 mb-5">
+                    <h3 class="tm-text-primary mb-4 tm-footer-title">About Catalog-Z</h3>
+                    <p>Catalog-Z is free <a rel="sponsored" href="https://v5.getbootstrap.com/">Bootstrap 5</a> Alpha 2
+                        HTML Template for video and photo websites. You can freely use this TemplateMo layout for a
+                        front-end integration with any kind of CMS website.</p>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12 px-5 mb-5">
+                    <h3 class="tm-text-primary mb-4 tm-footer-title">Our Links</h3>
+                    <ul class="tm-footer-links pl-0">
+                        <li><a href="#">Advertise</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">Our Company</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-md-7 col-12 px-5 mb-3" id="data-display">
+                    TBD
+                </div>
+                <div class="col-lg-4 col-md-5 col-12 px-5 text-right">
+                    Designed by <a href="https://templatemo.com" class="tm-text-gray" rel="sponsored"
+                        target="_parent">TemplateMo</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./static/js/plugins.js"></script>
+    <script>
+        var mydata = [];
+
+
+        function splitString(inputString) {
+            // 去除字符串两端的方括号和间隔的单引号
+            var cleanedString = inputString.replace(/\[|\]|&#39;/g, '');
+            // 分割字符串并返回结果数组
+            var resultList = cleanedString.split(', ');
+            return resultList;
+        }
+
+        function showModal(index, element0, element1, tags) {
+            var modal = document.getElementById("myModal");
+            var modal_title = modal.querySelector(".mymodal-title");
+            var modalImage = modal.querySelector("#modalImage");
+            var currentUrl = window.location.href;
+
+
+            //show overlay
+            var overlay = document.querySelector(".overlay");
+            overlay.style.display = "block";
+            modal.classList.add("show");
+
+
+
+            var taglist = tags;//splitString(tags)
+            var c1 = document.getElementById("content2");
+            var c2 = document.createElement('div');
+            c2.classList.add('mymodal-taglist');
+            c1.appendChild(c2);
+            taglist.forEach(function (item) {
+                // 创建div元素
+                var divElement = document.createElement('p');
+                // 设置div元素的文本内容为列表元素的值
+                divElement.innerHTML = item + " ";
+                divElement.classList.add('tm-call-to-action-description');
+                // 将div元素添加到父元素中
+                c2.appendChild(divElement);
+            });
+
+            modal.style.display = "block";
+            modal_title.innerHTML = element0 + " " + element1 + ":";
+
+            modalImage.setAttribute("src", "./static/img/" + element0 + "/" + element0 + element1 + ".jpg");
+
+            window.onclick = function (event) {
+                if (event.target == overlay) {
+                    modal.style.display = "none";
+                    modal.classList.remove("show");
+                    overlay.style.display = "none";
+                    c1.removeChild(c2);
+                }
+            }
+
+        }
+
+        $(document).ready(function () {
+            var queryString = window.location.search;
+            var urlParams = new URLSearchParams(queryString);
+
+            var page_num = urlParams.has('page_num') ? urlParams.get('page_num') : 1;
+            var search_kw = urlParams.has('search_kw') ? urlParams.get('search_kw') : '';
+
+            document.getElementById("search_form_id").addEventListener("submit", function (event) {
+                event.preventDefault();
+                var search_kw = document.getElementById("search_kw_id").value;
+                window.location.href = "index.html?search_kw=" + search_kw;
+            });
+
+            $.ajax({
+                url: "https://mystic-now-398307.df.r.appspot.com/db",
+                method: "POST",
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true,
+                dataType: "json",
+                type: "POST",
+                data: {
+                    page_num: page_num,
+                    search_kw: search_kw
+                },
+                success: function (data) {
+                    mydata = data;
+                    $("#data-display").text(data.elements.elenum);
+                    $("#maxpagesdisplay").text(data.elements.maxpages);
+
+
+                    var login_or_user = document.getElementById("login_or_user");
+                    if (data.elements.hasOwnProperty('username')) {
+                        var hellouser = document.createElement("div");
+                        hellouser.className = "nav-link nav-link-4";
+                        hellouser.textContent = "Hello, " + data.elements.username;
+                        login_or_user.appendChild(hellouser);
+                    }
+                    else {
+                        var hu2 = document.createElement("a");
+                        hu2.className = "nav-link nav-link-4";
+                        hu2.textContent = "Sign in";
+                        hu2.href = "login.html";
+                        login_or_user.appendChild(hu2);
+                    }
+                    // 获取容器元素的引用
+                    var container = document.getElementById('gallery_disp');
+
+                    // 循环生成16个元素
+                    for (var i = 0; i < data.elements.elenum; i++) {
+                        var element = data.res[i];
+                        var e0 = element[0];
+                        var tabId = "tab-" + (i + 1);
+                        var picId = "pic-" + (i + 1);
+
+                        var tabDiv = document.createElement("div");
+                        tabDiv.id = tabId;
+                        tabDiv.className = "col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5";
+
+                        var figure = document.createElement("figure");
+                        figure.className = "effect-ming tm-video-item";
+
+                        var img = document.createElement("img");
+                        img.src = "./static/img/" + e0 + "/" + e0 + element[1] + ".jpg";
+                        img.alt = "Image";
+                        img.id = picId;
+                        img.className = "img-fluid";
+                        img.referrerpolicy = "no-referrer";
+
+                        figure.appendChild(img);
+                        tabDiv.appendChild(figure);
+
+                        var textDiv = document.createElement("div");
+                        textDiv.className = "d-flex justify-content-between tm-text-gray";
+
+                        var span = document.createElement("span");
+                        span.className = "tm-text-gray-light";
+                        span.textContent = element[0] + " " + element[1];
+
+                        textDiv.appendChild(span);
+                        tabDiv.appendChild(textDiv);
+
+                        container.appendChild(tabDiv);
+
+                        document.getElementById(picId).addEventListener("click", function (index, el0, el1, el6) {
+                            return function () {
+                                showModal(index, el0, el1, el6);
+                            };
+                        }(i + 1, element[0], element[1], element[6]));
+                    }
+
+
+                    var container2 = document.getElementById('pgindex_disp');
+                    for (var ind = data.elements.left; ind <= data.elements.right; ind++) {
+                        if (ind == data.elements.page_num) {
+                            var activeLink = document.createElement("a");
+                            activeLink.className = "active tm-paging-link";
+                            activeLink.textContent = ind;
+                            container2.appendChild(activeLink);
+                        } else {
+                            var form = document.createElement("form");
+                            form.id = "form-" + ind;
+                            //form.action = "http://127.0.0.1:5267/db";
+                            //form.method = "POST";
+
+                            var input1 = document.createElement("input");
+                            input1.type = "hidden";
+                            input1.name = "search_kw";
+                            input1.value = data.elements.search_kw;
+
+                            var input2 = document.createElement("input");
+                            input2.type = "hidden";
+                            input2.name = "page_num";
+                            input2.value = ind;
+
+                            var button = document.createElement("button");
+                            button.className = "tm-paging-link";
+                            button.textContent = ind;
+
+                            form.appendChild(input1);
+                            form.appendChild(input2);
+                            form.appendChild(button);
+                            container2.appendChild(form);
+
+                            (function (index) {
+                                document.getElementById("form-" + index).addEventListener("submit", function (event) {
+                                    event.preventDefault();
+                                    window.location.href = "index.html?page_num=" + index + "&search_kw=" + search_kw;
+                                });
+                            })(ind);
+                        }
+                    }
+
+                },
+                error: function (xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        });
+        $(window).on("load", function () {
+            $('body').addClass('loaded');
+        });
+    </script>
+</body>
+
+</html>
