@@ -3,17 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width">
     <title> OpenSVBRDF </title>
+    <link rel="icon" type="image/png" href="./static/img/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="./static/css/bootstrap.min.css">
     <link rel="stylesheet" href="./static/fontawesome/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="./static/css/templatemo-style.css">
-    <!--
-    
-TemplateMo 556 Catalog-Z
 
-https://templatemo.com/tm-556-catalog-z
--->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
@@ -34,7 +30,7 @@ https://templatemo.com/tm-556-catalog-z
                 <div class="mymodal-text-content" id="content1">
                     <h2 class="mymodal-title">default</h2>
                     <div class="tm-call-to-action-description" id="content2">
-                        <!--<p class="mymodal_dladdr">Download address: 
+                        <!--<p class="mymodal_dladdr">Download address: , initial-scale=1.0
                             <a href="./static/tags.zip"  download>&nbsp;texture</a>
                             <a href="https://v5.getbootstrap.com/">&nbsp;texture</a>
                             <a href="https://v5.getbootstrap.com/">&nbsp;texture</a>
@@ -48,7 +44,7 @@ https://templatemo.com/tm-556-catalog-z
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <i class="fas fa-film mr-2"></i>
+                <!--<i class="fas fa-film mr-2"></i>-->
                 OpenSVBRDF
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -118,11 +114,11 @@ https://templatemo.com/tm-556-catalog-z
 
         <div class="row tm-mb-90">
             <div class="col-12 d-flex justify-content-between align-items-center tm-paging-col">
-
+                <a id="pg_prev_id" class="btn btn-primary tm-btn-prev mb-2">Previous</a>
                 <div class="tm-paging d-flex" id="pgindex_disp">
 
                 </div>
-
+                <a id="pg_next_id" class="btn btn-primary tm-btn-next">Next Page</a>
             </div>
         </div>
     </div> <!-- container-fluid, tm-container-content -->
@@ -148,11 +144,11 @@ https://templatemo.com/tm-556-catalog-z
             </div>
             <div class="row">
                 <div class="col-lg-8 col-md-7 col-12 px-5 mb-3" id="data-display">
-                    TBD
+                    This website template is designed by <a href="https://templatemo.com/tm-556-catalog-z"
+                        class="tm-text-gray" rel="sponsored" target="_parent">TemplateMo</a>.
                 </div>
                 <div class="col-lg-4 col-md-5 col-12 px-5 text-right">
-                    Designed by <a href="https://templatemo.com" class="tm-text-gray" rel="sponsored"
-                        target="_parent">TemplateMo</a>
+                    Authors
                 </div>
             </div>
         </div>
@@ -228,9 +224,11 @@ https://templatemo.com/tm-556-catalog-z
 
             document.getElementById("search_form_id").addEventListener("submit", function (event) {
                 event.preventDefault();
-                var search_kw = document.getElementById("search_kw_id").value;
-                window.location.href = "index.html?search_kw=" + search_kw;
+                var search_kw1 = document.getElementById("search_kw_id").value;
+                window.location.href = "index.html?search_kw=" + search_kw1;
             });
+
+
 
             $.ajax({
                 url: "https://mystic-now-398307.df.r.appspot.com/db",
@@ -247,9 +245,48 @@ https://templatemo.com/tm-556-catalog-z
                 },
                 success: function (data) {
                     mydata = data;
-                    $("#data-display").text(data.elements.elenum);
                     $("#maxpagesdisplay").text(data.elements.maxpages);
 
+
+                    var pg_prev_id = document.getElementById("pg_prev_id");
+                    if (page_num == 1) {
+                        pg_prev_id.className = "btn btn-primary tm-btn-prev mb-2 disabled";
+                    }
+                    else {
+                        pg_prev_id.addEventListener("click", function (event) {
+                            event.preventDefault();
+                            window.location.href = "index.html?page_num=" + (page_num - 1);
+                        });
+                    }
+
+                    var pg_next_id = document.getElementById("pg_next_id");
+                    if (page_num >= data.elements.maxpages) {
+                        pg_next_id.className = "btn btn-primary tm-btn-next mb-2 disabled";
+                    }
+                    else {
+                        pg_next_id.addEventListener("click", function (event) {
+                            event.preventDefault();
+                            var tmp23 = page_num + 1;
+                            window.location.href = "index.html?page_num=" + tmp23;
+                        });
+                    }
+
+
+
+                    document.getElementById("pg_goto_id").addEventListener("submit", function (event) {
+                        event.preventDefault();
+                        var pg_to_go = int(document.getElementById("pg_input_id").value);
+                        if (pg_to_go <= int(data.elements.maxpages)) {
+                            if (search_kw != '') {
+                                window.location.href = "index.html?page_num=" + pg_to_go + "&search_kw=" + search_kw;
+                            }
+                            else {
+                                window.location.href = "index.html?page_num=" + pg_to_go;
+                            }
+
+                        }
+
+                    });
 
                     var login_or_user = document.getElementById("login_or_user");
                     if (token) {
@@ -347,7 +384,12 @@ https://templatemo.com/tm-556-catalog-z
                             (function (index) {
                                 document.getElementById("form-" + index).addEventListener("submit", function (event) {
                                     event.preventDefault();
-                                    window.location.href = "index.html?page_num=" + index + "&search_kw=" + search_kw;
+                                    if (search_kw != '') {
+                                        window.location.href = "index.html?page_num=" + index + "&search_kw=" + search_kw;
+                                    }
+                                    else {
+                                        window.location.href = "index.html?page_num=" + index;
+                                    }
                                 });
                             })(ind);
                         }
